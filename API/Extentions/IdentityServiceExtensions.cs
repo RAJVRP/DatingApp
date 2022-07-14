@@ -11,7 +11,7 @@ namespace API.Extentions
     public static class IdentityServiceExtensions
     {
         
-        public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration _config)
+        public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration config)
         {
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
             .AddJwtBearer(option =>
@@ -19,7 +19,7 @@ namespace API.Extentions
                 option.TokenValidationParameters= new TokenValidationParameters
                 {
                     ValidateIssuerSigningKey = true,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_Config["TokenKey"])),
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["TokenKey"])),
                     ValidateIssuer = false,
                     ValidateAudience = false,
                 };
